@@ -83,3 +83,27 @@ Then before compiling the packages in the src folder, we install all system depe
 rosdep install -y --from-paths src --ignore-src --rosdistro noetic -r --os=debian:buster
 ```
 * ### Step 7 — Compiling Noetic packages on Raspberry Pi 4
+Before we continue, it is recommenced to increase the swap space, which is used when the physical memory space on your Raspberry Pi is used up.
+
+First we turn off swap:
+```bash
+sudo dphys-swapfile swapoff
+```
+Then we edit the following file to increase the swap space form 100 MB to 1024 MB (1 GB). As you may notice as well, 100 MB is quite small.
+```bash
+sudoedit /etc/dphys-swapfile
+```
+Then we call dphys-swapfile to set up the swap:
+```bash
+sudo dphys-swapfile setup
+```
+Finally we turn the swap back on:
+```bash
+sudo dphys-swapfile swapon
+```
+let's complete step 7 compiling Noetic pkgs
+```bash
+sudo src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/noetic -j1 -DPYTHON_EXECUTABLE=/usr/bin/python3
+```
+Here we pass 4 additional arguments.
+1.    ```bash -DCMAKE_BUILD_TYPE=Release ```
