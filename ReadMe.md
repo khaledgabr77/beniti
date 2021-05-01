@@ -12,6 +12,40 @@
 
 
 ## Step 4: Install ROS Noetic on Pi4
+## there are 2 ways to do this. 
+ ## First one!
+ * ### Step 1 — Set up ROS Noetic repo for Ubuntu 20.04
+``` bash
+echo "deb http://packages.ros.org/ros/ubuntu focal main" | sudo tee /etc/apt/sources.list.d/ros-focal.list 
+```
+* ### Step 2 — Add official ROS keyring
+```bash
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654 
+```
+* ### Step 3 — Update ROS package index
+``` bash 
+sudo apt update
+```
+* ### Step 4 — Install ROS Noetic package
+```bash 
+sudo apt install ros-noetic-desktop-full
+```
+* ### Steo 5 — Set up ROS Noetic environment
+```bash 
+source /opt/ros/noetic/setup.bash
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+```
+
+* ### Step 6 — Verify Noetic installation
+``` bash 
+roscd 
+roscore
+```
+
+
+
+ ## Second one!
+
 * ### Step 1 — Set up ROS Noetic repo on Raspberry Pi 4
 To install Noetic on Raspberry Pi 4, we will now add the official ROS Debian repo to the OS
 ```bash 
